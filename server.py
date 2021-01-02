@@ -4,7 +4,7 @@ import pickle
 from game import Game
 
 #   ip serveru (v uvozovkách)
-server = "192.168.0.183"
+server = "192.168.2.104"
 port = 5555
 
 #   Pro ipv4

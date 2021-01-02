@@ -58,6 +58,21 @@ class Button(Category):
         else:
             return False
 
+class Interface(pygame.Surface):
+    def __init__(self, text, x, y, color):
+        self.text = text
+        self.x = x
+        self.y = y
+        self.color = color
+        self.score = 5
+
+    def draw(self, win, current_color):
+        #   win -> window
+        font = pygame.font.SysFont("comicsans", 40)
+        text = font.render(self.text, 1, current_color)
+        text_score = font.render(str(self.score), 1, current_color)
+        win.blit(text, (self.x, self.y))
+        win.blit(text_score, (self.x + 140, self.y))
 
 def redrawWindow(win, game, p):
     win.fill((128, 128, 128))
@@ -132,6 +147,22 @@ def redrawWindow(win, game, p):
         for category in ctg:
             category.draw(win)
 
+        # interface1.draw(win)
+        # interface2.draw(win)
+
+        if(p == 0 and p == int(game.get_player_turn())):
+            interface1.draw(win, (155, 155, 155))
+            interface2.draw(win, (255, 255, 255))
+        elif(p == 0 and p != int(game.get_player_turn())):
+            interface1.draw(win, (255, 255, 255))
+            interface2.draw(win, (155, 155, 155))
+
+        elif(p == 1 and p == int(game.get_player_turn())):
+            interface1.draw(win, (255, 255, 255))
+            interface2.draw(win, (155, 155, 155))
+        else:
+            interface1.draw(win, (155, 155, 155))
+            interface2.draw(win, (255, 255, 255))
 
         # heh = True
         # if heh == True:
@@ -208,6 +239,9 @@ btns5 = [Button("1000", (fc - 1) * 2 + button_width, 4 * button_height + 50, (0,
 btns6 = [Button("1000", (fc - 1) * 2 + button_width, 5 * button_height + 60, (0, 0, 0)), Button("2000", (fc - 1) * 3 + button_width * 2, 5 * button_height + 60, (0, 0, 0)),\
          Button("3000", (fc - 1) * 4 + button_width * 3, 5 * button_height + 60, (0, 0, 0)), Button("4000", (fc - 1) * 5 + button_width * 4, 5 * button_height + 60, (0, 0, 0)),\
          Button("5000", (fc - 1) * 6 + button_width * 5, 5 * button_height + 60, (0, 0, 0))]
+
+interface1 = Interface('Player1: ', 100, 800, (255, 255, 255))
+interface2 = Interface('Player2: ', width - 400, 800, (255, 255, 255))
 
 def main():
     run = True
