@@ -8,6 +8,7 @@ class Game:
         self.moves = [None, None]
         self.wins = [0,0]
         self.ties = 0
+        self.p_turn = 0
 
     def get_player_move(self, p):
         """
@@ -55,3 +56,14 @@ class Game:
     def resetWent(self):
         self.p1Went = False
         self.p2Went = False
+
+    def change_player_turn(self):
+        if self.p_turn == 0:
+            self.p_turn = 1
+        else:
+            self.p_turn = 0
+        print(self.p_turn)
+        #return self.p_turn
+
+    def get_player_turn(self):
+        return self.p_turn
