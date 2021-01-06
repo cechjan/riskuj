@@ -4,7 +4,8 @@ import pickle
 pygame.font.init()
 
 width = 1300
-height = 900
+height = 1000
+
 win = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Client")
 
@@ -30,7 +31,6 @@ class Category:
         text = font.render(self.text, 1, (255,255,255))
         #   Centrování textu
         win.blit(text, (self.x + round(self.width/2) - round(text.get_width()/2), self.y + round(self.height/2) - round(text.get_height()/2)))
-
 
 class Button(Category):
     # def __init__(self, text, x, y, color):
@@ -58,6 +58,26 @@ class Button(Category):
         else:
             return False
 
+class Question(Button):
+    def __init__(self, q, a1, a2, a3, a4, correct_ans):
+        self.q = q
+        self.a1 = a1
+        self.a2 = a2
+        self.a3 = a3
+        self.a4 = a4
+        self.correct_ans = correct_ans
+
+    def draw(self, win):
+        font = pygame.font.SysFont("comicsans", 40)
+        self.q = font.render(self.q, 1, (255,255,255))
+        win.blit(self.q, (10, 0))
+
+
+class Q():
+    def __init__(self):
+        self.is_question_displayed = False
+
+
 class Interface(pygame.Surface):
     def __init__(self, text, x, y, color):
         self.text = text
@@ -73,6 +93,12 @@ class Interface(pygame.Surface):
         text_score = font.render(str(self.score), 1, current_color)
         win.blit(text, (self.x, self.y))
         win.blit(text_score, (self.x + 140, self.y))
+
+
+def draw_question(p, win):
+    q = Question("Ahoj, jak se máš?", "1", "2", "3", "4", "3")
+    q.draw(win)
+
 
 def redrawWindow(win, game, p):
     win.fill((128, 128, 128))
@@ -194,12 +220,12 @@ def redrawWindow(win, game, p):
                 if event.type == pygame.QUIT:
                     pygame.quit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
+                    # draw_question(p, win)
                     game.change_player_turn()
                     game = n.send("change")
-                    print("hehe")
         elif p != int(game.get_player_turn()):
+            draw_question(p, win)
             print(f"jsem hráč {p} a nejsem na tahu")
-
 
     pygame.display.update()
 
