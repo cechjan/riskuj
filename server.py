@@ -4,7 +4,7 @@ import pickle
 from game import Game
 
 #   ip serveru (v uvozovkách)
-server = "192.168.2.104"
+server = "192.168.0.183"
 port = 5555
 
 #   Pro ipv4
@@ -51,6 +51,8 @@ def threaded_client(conn, p, gameId):
                         game.resetWent()
                     elif data == "change":
                         game.change_player_turn()
+                    elif data == "questionDisplay":
+                        game.change_question_display()
                     elif data != "get":
                         game.play(p, data)
 

@@ -9,6 +9,7 @@ class Game:
         self.wins = [0,0]
         self.ties = 0
         self.p_turn = 0
+        self.is_question_displayed = False
 
     def get_player_move(self, p):
         """
@@ -67,3 +68,12 @@ class Game:
 
     def get_player_turn(self):
         return self.p_turn
+
+    def change_question_display(self):
+        if self.is_question_displayed == False:
+            self.is_question_displayed = True
+        else:
+            self.is_question_displayed = False
+
+    def get_question_display(self):
+        return self.is_question_displayed

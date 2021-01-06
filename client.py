@@ -95,9 +95,30 @@ class Interface(pygame.Surface):
         win.blit(text_score, (self.x + 140, self.y))
 
 
-def draw_question(p, win):
+def draw_question(p, win, game):
     q = Question("Ahoj, jak se máš?", "1", "2", "3", "4", "3")
     q.draw(win)
+    answer_button1 = Button("odpoved1", 100, 800, (147, 120, 47))
+    answer_button2 = Button("odpoved2", 100, 900, (147, 120, 47))
+    answer_button3 = Button("odpoved3", 300, 800, (147, 120, 47))
+    answer_button4 = Button("odpoved4", 300, 900, (147, 120, 47))
+
+    answer_button1.draw(win)
+    answer_button2.draw(win)
+    answer_button3.draw(win)
+    answer_button4.draw(win)
+
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            pos = pygame.mouse.get_pos()
+            if answer_button1.click(pos) and game.connected():
+                print(answer_button1.text)
+            elif answer_button2.click(pos) and game.connected():
+                print(answer_button2.text)
+            elif answer_button3.click(pos) and game.connected():
+                print(answer_button3.text)
+            elif answer_button4.click(pos) and game.connected():
+                print(answer_button4.text)
 
 
 def redrawWindow(win, game, p):
@@ -221,10 +242,16 @@ def redrawWindow(win, game, p):
                     pygame.quit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     # draw_question(p, win)
+                    game = n.send("questionDisplay")
+                    # if game.get_question_display() == False:
+                    #     game = n.send("questionDisplay")
                     game.change_player_turn()
                     game = n.send("change")
+            if game.get_question_display() == True:
+                draw_question(p, win, game)
         elif p != int(game.get_player_turn()):
-            draw_question(p, win)
+            if game.get_question_display() == True:
+                draw_question(p, win, game)
             print(f"jsem hráč {p} a nejsem na tahu")
 
     pygame.display.update()
