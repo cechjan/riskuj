@@ -1,4 +1,5 @@
 import pygame
+import json
 from network import Network
 import pickle
 pygame.font.init()
@@ -59,13 +60,14 @@ class Button(Category):
             return False
 
 class Question(Button):
-    def __init__(self, q, a1, a2, a3, a4, correct_ans):
+    def __init__(self, q, a1, a2, a3, a4, correct_ans, points):
         self.q = q
         self.a1 = a1
         self.a2 = a2
         self.a3 = a3
         self.a4 = a4
         self.correct_ans = correct_ans
+        self.points = points
 
     def draw(self, win):
         font = pygame.font.SysFont("comicsans", 40)
@@ -82,12 +84,12 @@ class Q():
 
 
 class Interface(pygame.Surface):
-    def __init__(self, text, x, y, color):
+    def __init__(self, text, x, y, color, score):
         self.text = text
         self.x = x
         self.y = y
         self.color = color
-        self.score = 5
+        self.score = score
 
     def draw(self, win, current_color):
         #   win -> window
@@ -104,15 +106,25 @@ def compare_and_change(p, game, answer_button, q):
     print(answer_button.text[0])
     if answer_button.text[0] == q.get_correct_ans():
         print("Spravna odpoved")
+        print(p)
+        if p == 0:
+            interface1.score += int(q.points)
+        else:
+            interface2.score += int(q.points)
 
 
 def draw_question(p, win, game):
-    q = Question("Ahoj, jak se máš?", "1", "2", "3", "4", "3")
+    #q = Question("Ahoj, jak se máš?", "1", "2", "3", "4", "3")
+    with open("json/kategorie1.json", encoding="utf-8") as f:
+        data = json.load(f)
+    for que in data["questions"]:
+        if que["points"] == str(1000):
+            q = Question(que["q"], que["a1"], que["a2"], que["a3"], que["a4"], que["correct_ans"], que["points"])
     q.draw(win)
-    answer_button1 = Button("1) odpoved1", 100, 800, (147, 120, 47))
-    answer_button2 = Button("2) odpoved2", 100, 900, (147, 120, 47))
-    answer_button3 = Button("3) odpoved3", 300, 800, (147, 120, 47))
-    answer_button4 = Button("4) odpoved4", 300, 900, (147, 120, 47))
+    answer_button1 = Button(f"1) {q.a1}", 100, 800, (147, 120, 47))
+    answer_button2 = Button(f"2) {q.a2}", 100, 900, (147, 120, 47))
+    answer_button3 = Button(f"3) {q.a3}", 300, 800, (147, 120, 47))
+    answer_button4 = Button(f"4) {q.a4}", 300, 900, (147, 120, 47))
 
     answer_button1.draw(win)
     answer_button2.draw(win)
@@ -120,6 +132,8 @@ def draw_question(p, win, game):
     answer_button4.draw(win)
     if p == int(game.get_player_turn()):
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 if answer_button1.click(pos) and game.connected():
@@ -330,8 +344,8 @@ btns6 = [Button("1000", (fc - 1) * 2 + button_width, 5 * button_height + 60, (0,
          Button("3000", (fc - 1) * 4 + button_width * 3, 5 * button_height + 60, (0, 0, 0)), Button("4000", (fc - 1) * 5 + button_width * 4, 5 * button_height + 60, (0, 0, 0)),\
          Button("5000", (fc - 1) * 6 + button_width * 5, 5 * button_height + 60, (0, 0, 0))]
 
-interface1 = Interface('Player1: ', 100, 800, (255, 255, 255))
-interface2 = Interface('Player2: ', width - 400, 800, (255, 255, 255))
+interface1 = Interface('Player1: ', 100, 800, (255, 255, 255), 0)
+interface2 = Interface('Player2: ', width - 400, 800, (255, 255, 255), 0)
 
 def main():
     run = True
