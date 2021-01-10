@@ -72,6 +72,9 @@ class Question(Button):
         self.q = font.render(self.q, 1, (255,255,255))
         win.blit(self.q, (10, 0))
 
+    def get_correct_ans(self):
+        return self.correct_ans
+
 
 class Q():
     def __init__(self):
@@ -95,30 +98,44 @@ class Interface(pygame.Surface):
         win.blit(text_score, (self.x + 140, self.y))
 
 
+def compare_and_change(p, game, answer_button, q):
+    game = n.send("change")
+    game = n.send("questionDisplay")
+    print(answer_button.text[0])
+    if answer_button.text[0] == q.get_correct_ans():
+        print("Spravna odpoved")
+
+
 def draw_question(p, win, game):
     q = Question("Ahoj, jak se máš?", "1", "2", "3", "4", "3")
     q.draw(win)
-    answer_button1 = Button("odpoved1", 100, 800, (147, 120, 47))
-    answer_button2 = Button("odpoved2", 100, 900, (147, 120, 47))
-    answer_button3 = Button("odpoved3", 300, 800, (147, 120, 47))
-    answer_button4 = Button("odpoved4", 300, 900, (147, 120, 47))
+    answer_button1 = Button("1) odpoved1", 100, 800, (147, 120, 47))
+    answer_button2 = Button("2) odpoved2", 100, 900, (147, 120, 47))
+    answer_button3 = Button("3) odpoved3", 300, 800, (147, 120, 47))
+    answer_button4 = Button("4) odpoved4", 300, 900, (147, 120, 47))
 
     answer_button1.draw(win)
     answer_button2.draw(win)
     answer_button3.draw(win)
     answer_button4.draw(win)
-
-    for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            pos = pygame.mouse.get_pos()
-            if answer_button1.click(pos) and game.connected():
-                print(answer_button1.text)
-            elif answer_button2.click(pos) and game.connected():
-                print(answer_button2.text)
-            elif answer_button3.click(pos) and game.connected():
-                print(answer_button3.text)
-            elif answer_button4.click(pos) and game.connected():
-                print(answer_button4.text)
+    if p == int(game.get_player_turn()):
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pos = pygame.mouse.get_pos()
+                if answer_button1.click(pos) and game.connected():
+                    print(answer_button1.text)
+                    # game = n.send("change")
+                    # game = n.send("questionDisplay")
+                    compare_and_change(p, game, answer_button1, q)
+                elif answer_button2.click(pos) and game.connected():
+                    print(answer_button2.text)
+                    compare_and_change(p, game, answer_button2, q)
+                elif answer_button3.click(pos) and game.connected():
+                    print(answer_button3.text)
+                    compare_and_change(p, game, answer_button3, q)
+                elif answer_button4.click(pos) and game.connected():
+                    print(answer_button4.text)
+                    compare_and_change(p, game, answer_button4, q)
 
 
 def redrawWindow(win, game, p):
@@ -237,18 +254,38 @@ def redrawWindow(win, game, p):
             #             game = n.send("change")
             #             print("hehe")
             #             run = False
+            if game.get_question_display() == True:
+                draw_question(p, win, game)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     # draw_question(p, win)
-                    game = n.send("questionDisplay")
+                    # game = n.send("questionDisplay")
                     # if game.get_question_display() == False:
                     #     game = n.send("questionDisplay")
-                    game.change_player_turn()
-                    game = n.send("change")
-            if game.get_question_display() == True:
-                draw_question(p, win, game)
+                    # game.change_player_turn()
+                    # game = n.send("change")
+                    pos = pygame.mouse.get_pos()
+                    for button in btns1:
+                        if button.click(pos) and game.connected():
+                            game = n.send("questionDisplay")
+                    for button in btns2:
+                        if button.click(pos) and game.connected():
+                            game = n.send("questionDisplay")
+                    for button in btns3:
+                        if button.click(pos) and game.connected():
+                            game = n.send("questionDisplay")
+                    for button in btns4:
+                        if button.click(pos) and game.connected():
+                            game = n.send("questionDisplay")
+                    for button in btns5:
+                        if button.click(pos) and game.connected():
+                            game = n.send("questionDisplay")
+                    for button in btns6:
+                        if button.click(pos) and game.connected():
+                            game = n.send("questionDisplay")
+
         elif p != int(game.get_player_turn()):
             if game.get_question_display() == True:
                 draw_question(p, win, game)
