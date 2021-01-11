@@ -34,21 +34,6 @@ class Category:
         win.blit(text, (self.x + round(self.width/2) - round(text.get_width()/2), self.y + round(self.height/2) - round(text.get_height()/2)))
 
 class Button(Category):
-    # def __init__(self, text, x, y, color):
-    #     self.text = text
-    #     self.x = x
-    #     self.y = y
-    #     self.color = color
-    #     self.width = 150
-    #     self.height = 100
-
-    # def draw(self, win):
-    #     #   win -> window
-    #     pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
-    #     font = pygame.font.SysFont("comicsans", 40)
-    #     text = font.render(self.text, 1, (255,255,255))
-    #     #   Centrování textu
-    #     win.blit(text, (self.x + round(self.width/2) - round(text.get_width()/2), self.y + round(self.height/2) - round(text.get_height()/2)))
 
     def click(self, pos):
         x1 = pos[0]
@@ -108,15 +93,12 @@ def compare_and_change(p, game, answer_button, q):
         print("Spravna odpoved")
         print(p)
         if p == 0:
-            # interface1.score += int(q.points)
             game = n.send(f"1{q.points}")
         else:
-            # interface2.score += int(q.points)
             game = n.send(f"2{q.points}")
 
 
 def draw_question(p, win, game):
-    # q = Question("Ahoj, jak se máš?", "1", "2", "3", "4", "3")
     print(f"Bodíky: {game.current_q}, kategorie: {game.category}")
     with open(f"json/kategorie{game.category}.json", encoding="utf-8") as f:
         data = json.load(f)
@@ -143,8 +125,6 @@ def draw_question(p, win, game):
                 pos = pygame.mouse.get_pos()
                 if answer_button1.click(pos) and game.connected():
                     print(answer_button1.text)
-                    # game = n.send("change")
-                    # game = n.send("questionDisplay")
                     compare_and_change(p, game, answer_button1, q)
                 elif answer_button2.click(pos) and game.connected():
                     print(answer_button2.text)
@@ -165,50 +145,6 @@ def redrawWindow(win, game, p):
         text = font.render("Waiting for Player...", 1, (255, 0, 0), True)
         win.blit(text, (width/2 - text.get_width()/2, height/2 - text.get_height()/2))
     else:
-        font = pygame.font.SysFont("comicsans", 60)
-        text = font.render("Your Move", 1, (0, 255, 255))
-        win.blit(text, (80, 200))
-
-        text = font.render("Opponents", 1, (0, 255, 255))
-        win.blit(text, (380, 200))
-
-        move1 = game.get_player_move(0)
-        move2 = game.get_player_move(1)
-        if game.bothWent():
-            text1 = font.render(move1, 1, (0, 0, 0))
-            text2 = font.render(move2, 1, (0, 0, 0))
-        else:
-            #   Pokud hráč 1 dal tah a já jsem ten hráč
-            if game.p1Went and p == 0:
-                text1 = font.render(move1, 1, (0, 0, 0))
-            elif game.p1Went:
-                text1 = font.render("Locked In", 1, (0, 0, 0))
-            else:
-                text1 = font.render("Waiting...", 1, (0, 0, 0))
-
-            #   Pokud hráč 2 dal tah a já jsem ten hráč
-            if game.p2Went and p == 1:
-                text2 = font.render(move2, 1, (0,0,0))
-            elif game.p2Went:
-                text2 = font.render("Locked In", 1, (0, 0, 0))
-            else:
-                text2 = font.render("Waiting...", 1, (0, 0, 0))
-
-        if p == 1:
-            win.blit(text2, (100, 350))
-            win.blit(text1, (400, 350))
-        else:
-            win.blit(text1, (100, 350))
-            win.blit(text2, (400, 350))
-
-        #   Získat ze serveru
-        if p == 1:
-            win.blit(text2, (100, 350))
-            win.blit(text1, (400, 350))
-        else:
-            win.blit(text1, (100, 350))
-            win.blit(text2, (400, 350))
-
         for btn in btns1:
             btn.draw(win)
 
@@ -230,9 +166,6 @@ def redrawWindow(win, game, p):
         for category in ctg:
             category.draw(win)
 
-        # interface1.draw(win)
-        # interface2.draw(win)
-
         #       Aktualizuování skóre
         interface1.score = game.p1_score
         interface2.score = game.p2_score
@@ -251,44 +184,14 @@ def redrawWindow(win, game, p):
             interface1.draw(win, (255, 255, 255))
             interface2.draw(win, (155, 155, 155))
 
-        # heh = True
-        # if heh == True:
-        #     if p == 0 and game.get_player_turn() == int(0):
-        #         print("jsem hráč 0 a jsem na tahu")
-        #     elif p == 0 and game.get_player_turn() == int(1):
-        #         print("jsem hráč 0 a nejsem na tahu")
-        #     elif p == 1 and game.get_player_turn() == int(0):
-        #         print("jsme hráč 1 a jsem na tahu")
-        #     elif p == 1 and game.get_player_turn() == int(1):
-        #         print("jsem hráč 1 a nejsem na tahu")
-
-        #n = Network()
-        #run = True
-        #game.change_player_turn()
         if p == int(game.get_player_turn()):
             print(f"jsem hráč {p} a jsem na tahu")
-            # while run:
-            #     for event in pygame.event.get():
-            #         if event.type == pygame.QUIT:
-            #             pygame.quit()
-            #             run = False
-            #         if event.type == pygame.MOUSEBUTTONDOWN:
-            #             game.change_player_turn()
-            #             game = n.send("change")
-            #             print("hehe")
-            #             run = False
             if game.get_question_display() == True:
                 draw_question(p, win, game)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    # draw_question(p, win)
-                    # game = n.send("questionDisplay")
-                    # if game.get_question_display() == False:
-                    #     game = n.send("questionDisplay")
-                    # game.change_player_turn()
-                    # game = n.send("change")
                     pos = pygame.mouse.get_pos()
                     for button in btns1:
                         if button.click(pos) and game.connected():
@@ -365,7 +268,6 @@ interface2 = Interface('Player2: ', width - 400, 800, (255, 255, 255), 0)
 def main():
     run = True
     clock = pygame.time.Clock()
-    #n = Network()
     player = int(n.getP())
     print("You are player", player)
 
@@ -390,35 +292,10 @@ def main():
                 print("Couldn't get game")
                 break
 
-            # font = pygame.font.SysFont("comicsans", 90)
-            # if (game.winner() == 1 and player == 1) or (game.winner() == 0 and player == 0):
-            #     text = font.render("You Won!", 1, (255, 0, 0))
-            # elif game.winner() == -1:
-            #     text = font.render("Tie Game!", 1, (255, 0, 0))
-            # else:
-            #     text = font.render("You Lost...", 1, (255, 0, 0))
-
-            # win.blit(text, (width/2 - text.get_width()/2, height/2 - text.get_height()/2))
-            # pygame.display.update()
-            # pygame.time.delay(2000)
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
                 pygame.quit()
-
-            # if event.type == pygame.MOUSEBUTTONDOWN:
-            #     pos = pygame.mouse.get_pos()
-                # for btn in btns:
-                #     #   Pokud bylo kliknuto na button a zároveň jsou oba hráči připojení
-                #     if btn.click(pos) and game.connected():
-                #         if player == 0:
-                #             if not game.p1Went:
-                #                 #   Pošle se text buttonu (Rock, Paper, Scissors)
-                #                 n.send(btn.text)
-                #         else:
-                #             if not game.p2Went:
-                #                 n.send(btn.text)
 
         redrawWindow(win, game, player)
 

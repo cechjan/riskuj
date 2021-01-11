@@ -62,24 +62,10 @@ def threaded_client(conn, p, gameId):
                     elif data == "questionDisplay":
                         game.change_question_display()
                     elif data[0] == "1":
-                        # r = range(5)
-                        # for i in r:
-                        #     if i * 1000 == int(data[1:]):
-                        #         print(int(data[1:]))
-                        #         game.add_score(1, int(data[1:]))
-                        #         print(f"Score of the first player {game.print_score1()}")
                         adding_score(1, int(data[1:]), game)
                     elif data[0] == "2":
-                        # r = range(5)
-                        # for i in r:
-                        #     if i * 1000 == int(data[1:]):
-                        #         print(int(data[1:]))
-                        #         game.add_score(2, int(data[1:]))
-                        #         print(f"Score of the first player {game.print_score2()}")
                         adding_score(2, int(data[1:]), game)
                     elif data[0] == "b":
-                        # game.current_q = int(data[4:])
-                        # game.change_current_q = data[3]
                         game.change_current_q(str(data[4:]), str(data[3]))
                     elif data != "get":
                         game.play(p, data)
