@@ -108,13 +108,15 @@ def compare_and_change(p, game, answer_button, q):
         print("Spravna odpoved")
         print(p)
         if p == 0:
-            interface1.score += int(q.points)
+            # interface1.score += int(q.points)
+            game = n.send(f"1{q.points}")
         else:
-            interface2.score += int(q.points)
+            # interface2.score += int(q.points)
+            game = n.send(f"2{q.points}")
 
 
 def draw_question(p, win, game):
-    #q = Question("Ahoj, jak se máš?", "1", "2", "3", "4", "3")
+    # q = Question("Ahoj, jak se máš?", "1", "2", "3", "4", "3")
     with open("json/kategorie1.json", encoding="utf-8") as f:
         data = json.load(f)
     for que in data["questions"]:
@@ -130,6 +132,7 @@ def draw_question(p, win, game):
     answer_button2.draw(win)
     answer_button3.draw(win)
     answer_button4.draw(win)
+
     if p == int(game.get_player_turn()):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -227,6 +230,10 @@ def redrawWindow(win, game, p):
 
         # interface1.draw(win)
         # interface2.draw(win)
+
+        #       Aktualizuování skóre
+        interface1.score = game.p1_score
+        interface2.score = game.p2_score
 
         if(p == 0 and p == int(game.get_player_turn())):
             interface1.draw(win, (155, 155, 155))

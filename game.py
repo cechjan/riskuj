@@ -10,6 +10,8 @@ class Game:
         self.ties = 0
         self.p_turn = 0
         self.is_question_displayed = False
+        self.p1_score = 0
+        self.p2_score = 0
 
     def get_player_move(self, p):
         """
@@ -77,3 +79,14 @@ class Game:
 
     def get_question_display(self):
         return self.is_question_displayed
+
+    def add_score(self, p, points):
+        if p == 1:
+            self.p1_score += int(points)
+        elif p == 2:
+            self.p2_score += int(points)
+
+    def print_score1(self):
+        return self.p1_score
+    def print_score2(self):
+        return self.p2_score
