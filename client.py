@@ -117,11 +117,13 @@ def compare_and_change(p, game, answer_button, q):
 
 def draw_question(p, win, game):
     # q = Question("Ahoj, jak se máš?", "1", "2", "3", "4", "3")
-    with open("json/kategorie1.json", encoding="utf-8") as f:
+    print(f"Bodíky: {game.current_q}, kategorie: {game.category}")
+    with open(f"json/kategorie{game.category}.json", encoding="utf-8") as f:
         data = json.load(f)
     for que in data["questions"]:
-        if que["points"] == str(1000):
+        if que["points"] == game.current_q:
             q = Question(que["q"], que["a1"], que["a2"], que["a3"], que["a4"], que["correct_ans"], que["points"])
+
     q.draw(win)
     answer_button1 = Button(f"1) {q.a1}", 100, 800, (147, 120, 47))
     answer_button2 = Button(f"2) {q.a2}", 100, 900, (147, 120, 47))
@@ -236,18 +238,18 @@ def redrawWindow(win, game, p):
         interface2.score = game.p2_score
 
         if(p == 0 and p == int(game.get_player_turn())):
-            interface1.draw(win, (155, 155, 155))
-            interface2.draw(win, (255, 255, 255))
-        elif(p == 0 and p != int(game.get_player_turn())):
             interface1.draw(win, (255, 255, 255))
             interface2.draw(win, (155, 155, 155))
+        elif(p == 0 and p != int(game.get_player_turn())):
+            interface1.draw(win, (155, 155, 155))
+            interface2.draw(win, (255, 255, 255))
 
         elif(p == 1 and p == int(game.get_player_turn())):
-            interface1.draw(win, (255, 255, 255))
-            interface2.draw(win, (155, 155, 155))
-        else:
             interface1.draw(win, (155, 155, 155))
             interface2.draw(win, (255, 255, 255))
+        else:
+            interface1.draw(win, (255, 255, 255))
+            interface2.draw(win, (155, 155, 155))
 
         # heh = True
         # if heh == True:
@@ -291,21 +293,27 @@ def redrawWindow(win, game, p):
                     for button in btns1:
                         if button.click(pos) and game.connected():
                             game = n.send("questionDisplay")
+                            game = n.send(f"btn1{button.text}")
                     for button in btns2:
                         if button.click(pos) and game.connected():
                             game = n.send("questionDisplay")
+                            game = n.send(f"btn2{button.text}")
                     for button in btns3:
                         if button.click(pos) and game.connected():
                             game = n.send("questionDisplay")
+                            game = n.send(f"btn3{button.text}")
                     for button in btns4:
                         if button.click(pos) and game.connected():
                             game = n.send("questionDisplay")
+                            game = n.send(f"btn4{button.text}")
                     for button in btns5:
                         if button.click(pos) and game.connected():
                             game = n.send("questionDisplay")
+                            game = n.send(f"btn5{button.text}")
                     for button in btns6:
                         if button.click(pos) and game.connected():
                             game = n.send("questionDisplay")
+                            game = n.send(f"btn6{button.text}")
 
         elif p != int(game.get_player_turn()):
             if game.get_question_display() == True:
@@ -382,17 +390,17 @@ def main():
                 print("Couldn't get game")
                 break
 
-            font = pygame.font.SysFont("comicsans", 90)
-            if (game.winner() == 1 and player == 1) or (game.winner() == 0 and player == 0):
-                text = font.render("You Won!", 1, (255, 0, 0))
-            elif game.winner() == -1:
-                text = font.render("Tie Game!", 1, (255, 0, 0))
-            else:
-                text = font.render("You Lost...", 1, (255, 0, 0))
+            # font = pygame.font.SysFont("comicsans", 90)
+            # if (game.winner() == 1 and player == 1) or (game.winner() == 0 and player == 0):
+            #     text = font.render("You Won!", 1, (255, 0, 0))
+            # elif game.winner() == -1:
+            #     text = font.render("Tie Game!", 1, (255, 0, 0))
+            # else:
+            #     text = font.render("You Lost...", 1, (255, 0, 0))
 
-            win.blit(text, (width/2 - text.get_width()/2, height/2 - text.get_height()/2))
-            pygame.display.update()
-            pygame.time.delay(2000)
+            # win.blit(text, (width/2 - text.get_width()/2, height/2 - text.get_height()/2))
+            # pygame.display.update()
+            # pygame.time.delay(2000)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

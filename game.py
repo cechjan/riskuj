@@ -12,6 +12,8 @@ class Game:
         self.is_question_displayed = False
         self.p1_score = 0
         self.p2_score = 0
+        self.current_q = 0
+        self.category = 0
 
     def get_player_move(self, p):
         """
@@ -90,3 +92,7 @@ class Game:
         return self.p1_score
     def print_score2(self):
         return self.p2_score
+
+    def change_current_q(self, points, category):
+        self.current_q = points
+        self.category = category

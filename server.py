@@ -4,7 +4,7 @@ import pickle
 from game import Game
 
 #   ip serveru (v uvozovkách)
-server = "192.168.0.183"
+server = "192.168.2.104"
 port = 5555
 
 #   Pro ipv4
@@ -26,7 +26,7 @@ idCount = 0
 
 
 def adding_score(player, score, game):
-    r = range(5)
+    r = range(6)
     for i in r:
         if i * 1000 == score:
             print(score)
@@ -77,6 +77,10 @@ def threaded_client(conn, p, gameId):
                         #         game.add_score(2, int(data[1:]))
                         #         print(f"Score of the first player {game.print_score2()}")
                         adding_score(2, int(data[1:]), game)
+                    elif data[0] == "b":
+                        # game.current_q = int(data[4:])
+                        # game.change_current_q = data[3]
+                        game.change_current_q(str(data[4:]), str(data[3]))
                     elif data != "get":
                         game.play(p, data)
 
