@@ -265,6 +265,7 @@ btns6 = [Button("1000", (fc - 1) * 2 + button_width, 5 * button_height + 60, (0,
 interface1 = Interface('Player1: ', 100, 800, (255, 255, 255), 0)
 interface2 = Interface('Player2: ', width - 400, 800, (255, 255, 255), 0)
 
+
 def main():
     run = True
     clock = pygame.time.Clock()
@@ -299,6 +300,7 @@ def main():
 
         redrawWindow(win, game, player)
 
+
 #   Napíš click to Play pokud se zapne klient a pokud se jeden odpojí tak druhého to dá zase k textu click to Play
 def menu_screen():
     run = True
@@ -320,6 +322,7 @@ def menu_screen():
                 run = False
 
     main()
+
 
 while True:
     menu_screen()

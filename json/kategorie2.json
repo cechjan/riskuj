@@ -1,0 +1,49 @@
+{
+    "questions": [
+        {
+            "q": "Jaká jednotka má zkratku dag?",
+            "a1": "decimetr",
+            "a2": "mililitr",
+            "a3": "dekagram",
+            "a4": "metr",
+            "correct_ans": "3",
+            "points": "1000"
+        },
+        {
+            "q": "Která jednotka nepatří mezi jednotky objemu?",
+            "a1": "litr",
+            "a2": "decimetr",
+            "a3": "hektolitr",
+            "a4": "mililitr",
+            "correct_ans": "2",
+            "points": "2000"
+        },
+        {
+            "q": "Jaké hodiny se využívaly jako první?",
+            "a1": "atomové",
+            "a2": "jaderné",
+            "a3": "větrné",
+            "a4": "sluneční",
+            "correct_ans": "4",
+            "points": "3000"
+        },
+        {
+            "q": "Anička má provázek dlouhý 6 decimetrů, Bohouš půl metru a Cyril 75 centimetrů. Kdo má nejkratší provázek?",
+            "a1": "Anička",
+            "a2": "Bohuš",
+            "a3": "Cyril",
+            "a4": "nelze určit",
+            "correct_ans": "2",
+            "points": "4000"
+        },
+        {
+            "q": "Kde sídlí Mezinárodní úřad pro míry a váhy?",
+            "a1": "v Londýně",
+            "a2": "v Paříži",
+            "a3": "v Římě",
+            "a4": "v Berlíně",
+            "correct_ans": "2",
+            "points": "5000"
+        }
+    ]
+}

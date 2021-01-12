@@ -1,0 +1,49 @@
+{
+    "questions": [
+        {
+            "q": "Organické látky nejsou většinou",
+            "a1": "těkavé",
+            "a2": "rozpustné ve vodě",
+            "a3": "sloučeniny uhlíku",
+            "a4": "hořlavé",
+            "correct_ans": "2",
+            "points": "1000"
+        },
+        {
+            "q": "Mezi organické látky nepatří",
+            "a1": "lůj",
+            "a2": "ocet",
+            "a3": "vápenec",
+            "a4": "vlna",
+            "correct_ans": "3",
+            "points": "2000"
+        },
+        {
+            "q": "Dozrávání ovoce urychluje přítomnost",
+            "a1": "propylenu",
+            "a2": "acetylenu",
+            "a3": "ethylenu",
+            "a4": "butadienu",
+            "correct_ans": "3",
+            "points": "3000"
+        },
+        {
+            "q": "Derivátem uhlovodíků není",
+            "a1": "aceton",
+            "a2": "naftalen",
+            "a3": "methanol",
+            "a4": "kyselina mravenčí",
+            "correct_ans": "2",
+            "points": "4000"
+        },
+        {
+            "q": "Kvašením roztoků cukerných šťáv se vyrábí",
+            "a1": "tuky",
+            "a2": "fruktosa",
+            "a3": "aminokyseliny",
+            "a4": "ethanol",
+            "correct_ans": "4",
+            "points": "5000"
+        }
+    ]
+}

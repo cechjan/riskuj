@@ -1,0 +1,49 @@
+{
+    "questions": [
+        {
+            "q": "Planeta šestá od Slunce se jmenuje",
+            "a1": "Jupiter",
+            "a2": "Uran",
+            "a3": "Saturn",
+            "a4": "Neptun",
+            "correct_ans": "3",
+            "points": "1000"
+        },
+        {
+            "q": "Největší planetou sluneční soustavy je?",
+            "a1": "Jupiter",
+            "a2": "Saturn",
+            "a3": "Neptun",
+            "a4": "Venuše",
+            "correct_ans": "1",
+            "points": "2000"
+        },
+        {
+            "q": "Která jediná planeta se neotáčí kolem osy?",
+            "a1": "Neptun",
+            "a2": "Merkur",
+            "a3": "Pluto",
+            "a4": "Uran",
+            "correct_ans": "4",
+            "points": "3000"
+        },
+        {
+            "q": "Největší hmotnost z planet zemského typu má",
+            "a1": "Venuše",
+            "a2": "Země",
+            "a3": "Jupiter",
+            "a4": "Pluto",
+            "correct_ans": "2",
+            "points": "4000"
+        },
+        {
+            "q": "Souš Země zabírá",
+            "a1": "39,4 %",
+            "a2": "50 %",
+            "a3": "29,2 %",
+            "a4": "61,5 %",
+            "correct_ans": "3",
+            "points": "5000"
+        }
+    ]
+}

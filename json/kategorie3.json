@@ -1,0 +1,49 @@
+{
+    "questions": [
+        {
+            "q": "Ve kterém roce byla uzavřena basilejská komaktáta?",
+            "a1": "1431",
+            "a2": "1434",
+            "a3": "1436",
+            "a4": "1438",
+            "correct_ans": "3",
+            "points": "1000"
+        },
+        {
+            "q": "Autorem výzdoby kaple sv. Kříže na Karlštejně je",
+            "a1": "Mistr Karlštějnský",
+            "a2": "Matyáš z Arrasu",
+            "a3": "Petr Parléř",
+            "a4": "Mistr Theodorik",
+            "correct_ans": "4",
+            "points": "2000"
+        },
+        {
+            "q": "Očekávání tisíciletého panování Krista se nazývá?",
+            "a1": "ostrakismus",
+            "a2": "revoluce",
+            "a3": "milénium",
+            "a4": "chiliasmus",
+            "correct_ans": "4",
+            "points": "3000"
+        },
+        {
+            "q": "\"Král Holec\" se přezdívalo",
+            "a1": "Václav IV.",
+            "a2": "Jiřímu z Poděbrad",
+            "a3": "Ladislavu Pohrobkovi",
+            "a4": "Václavovi III.",
+            "correct_ans": "3",
+            "points": "4000"
+        },
+        {
+            "q": "Čáslavský sněm, který přijal husitský program za zemský zákon, se konal",
+            "a1": "1421",
+            "a2": "1420",
+            "a3": "1424",
+            "a4": "1425",
+            "correct_ans": "1",
+            "points": "5000"
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+    "questions": [
+        {
+            "q": "Nejdelší řekou Evropy je",
+            "a1": "Dunaj",
+            "a2": "Rýn",
+            "a3": "Volha",
+            "a4": "Labe",
+            "correct_ans": "3",
+            "points": "1000"
+        },
+        {
+            "q": "Mezi naše národní parky patří",
+            "a1": "Pálava",
+            "a2": "Podyjí",
+            "a3": "České středohoří",
+            "a4": "Bíle Karpaty",
+            "correct_ans": "2",
+            "points": "2000"
+        },
+        {
+            "q": "Původními obyvateli Austrálie jsou",
+            "a1": "Maorové",
+            "a2": "Kreolové",
+            "a3": "Malgašové",
+            "a4": "Aboriginci",
+            "correct_ans": "4",
+            "points": "3000"
+        },
+        {
+            "q": "Nejvyšší horou Severní Ameriky je",
+            "a1": "Mt. McKinley",
+            "a2": "Aconcagua",
+            "a3": "Mt. Robson",
+            "a4": "Huascarán",
+            "correct_ans": "1",
+            "points": "4000"
+        },
+        {
+            "q": "Posvátnou řekou hinduistů je",
+            "a1": "Ganga",
+            "a2": "Indus",
+            "a3": "Brahmaputra",
+            "a4": "Mekong",
+            "correct_ans": "1",
+            "points": "5000"
+        }
+    ]
+}

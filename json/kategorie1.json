@@ -10,7 +10,7 @@
             "points": "1000"
         },
         {
-            "q": "V kterém kraji leží Brno",
+            "q": "Ve kterém kraji leží Brno?",
             "a1": "MSK",
             "a2": "PHA",
             "a3": "JHM",
@@ -19,30 +19,30 @@
             "points": "2000"
         },
         {
-            "q": "Jaké je největší město v ČR?3",
-            "a1": "Praha",
-            "a2": "Brno",
-            "a3": "Ostrava",
-            "a4": "Český Těšín",
-            "correct_ans": "1",
+            "q": "Ve kterém kraji leží Jihlava?",
+            "a1": "MSK",
+            "a2": "PHA",
+            "a3": "JHM",
+            "a4": "VYS",
+            "correct_ans": "4",
             "points": "3000"
         },
         {
-            "q": "Jaké je největší město v ČR?4",
-            "a1": "Praha",
-            "a2": "Brno",
-            "a3": "Ostrava",
-            "a4": "Český Těšín",
-            "correct_ans": "1",
+            "q": "Které z měst není na seznamu UNESCO?",
+            "a1": "Brno",
+            "a2": "Ostrava",
+            "a3": "Kroměříž",
+            "a4": "Kutná Hora",
+            "correct_ans": "2",
             "points": "4000"
         },
         {
-            "q": "Jaké je největší město v ČR?5",
-            "a1": "Praha",
-            "a2": "Brno",
-            "a3": "Ostrava",
+            "q": "Ve kterém městě se nachází Hláska?",
+            "a1": "Jihlava",
+            "a2": "Ostrava",
+            "a3": "Opava",
             "a4": "Český Těšín",
-            "correct_ans": "1",
+            "correct_ans": "3",
             "points": "5000"
         }
     ]
