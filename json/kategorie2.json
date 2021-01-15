@@ -28,10 +28,10 @@
             "points": "3000"
         },
         {
-            "q": "Anička má provázek dlouhý 6 decimetrů, Bohouš půl metru a Cyril 75 centimetrů. Kdo má nejkratší provázek?",
-            "a1": "Anička",
-            "a2": "Bohuš",
-            "a3": "Cyril",
+            "q": "Eva má provázek dlouhý 6 dm, Jan 0,5 m a Tom 75 cm. Čí je nejkratší?",
+            "a1": "Eva",
+            "a2": "Jan",
+            "a3": "Tom",
             "a4": "nelze určit",
             "correct_ans": "2",
             "points": "4000"

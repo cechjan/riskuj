@@ -50,14 +50,14 @@ def compare_and_change(p, game, answer_button, q):
             game = n.send(f"1{q.points}")
         else:
             game = n.send(f"2{q.points}")
-        count = 0
-        for e in range(5):
-            if not game.c1[e] and not game.c2[e] and not game.c3[e] and not game.c4[e] and not game.c5[e] and not \
-            game.c6[e]:
-                count += 1
-        if count == 5:
-            print("Všechno je fuč")
-            game = n.send("end")
+        # count = 0
+        # for e in range(5):
+        #     if not game.c1[e] and not game.c2[e] and not game.c3[e] and not game.c4[e] and not game.c5[e] and not \
+        #     game.c6[e]:
+        #         count += 1
+        # if count == 5:
+        #     print("Všechno je fuč")
+        #     game = n.send("end")
 
 
 def draw_question(p, win, game):
@@ -68,11 +68,20 @@ def draw_question(p, win, game):
         if que["points"] == game.current_q:
             q = question.Question(que["q"], que["a1"], que["a2"], que["a3"], que["a4"], que["correct_ans"], que["points"])
 
+    #q.draw(win)
+    # font = pygame.font.SysFont("comicsans", 40)
+    # qwe = font.render(q, 1, (255, 255, 255))
+    # win.blit(qwe, (10, 0))
+    ANSWER_CLR = (52, 47, 222)
     q.draw(win)
-    answer_button1 = question.Button(f"1) {q.a1}", 100, 800, (147, 120, 47))
-    answer_button2 = question.Button(f"2) {q.a2}", 100, 900, (147, 120, 47))
-    answer_button3 = question.Button(f"3) {q.a3}", 300, 800, (147, 120, 47))
-    answer_button4 = question.Button(f"4) {q.a4}", 300, 900, (147, 120, 47))
+    answer_button1 = question.Button(f"1) {q.a1}", 455, 750, ANSWER_CLR)
+    answer_button1.width = 380
+    answer_button2 = question.Button(f"2) {q.a2}", 455, 875, ANSWER_CLR)
+    answer_button2.width = 380
+    answer_button3 = question.Button(f"3) {q.a3}", 450 + 380 + 40, 750, ANSWER_CLR)
+    answer_button3.width = 380
+    answer_button4 = question.Button(f"4) {q.a4}", 450 + 380 + 40, 875, ANSWER_CLR)
+    answer_button4.width = 380
 
     answer_button1.draw(win)
     answer_button2.draw(win)
@@ -100,52 +109,52 @@ def draw_question(p, win, game):
 
 
 def redrawWindow(win, game, p):
-    win.fill((128, 128, 128))
+    win.fill((41, 50, 65))
 
     if not(game.connected()):
-        font = pygame.font.SysFont("comicsans", 80)
-        text = font.render("Waiting for Player...", 1, (255, 0, 0), True)
+        font = pygame.font.SysFont("comicsans", 100)
+        text = font.render("Čekání na druhého hráče...", 1, (237, 103, 0))
         win.blit(text, (width/2 - text.get_width()/2, height/2 - text.get_height()/2))
     else:
-        if not game.is_it_the_end:
-            i = 0
-            for btn in question.btns1:
-                if game.c1[i] == True:
-                    btn.draw(win)
-                i = i + 1
+        # if not game.is_it_the_end:
+        i = 0
+        for btn in question.btns1:
+            if game.c1[i] == True:
+                btn.draw(win)
+            i = i + 1
 
-            i = 0
-            for btn in question.btns2:
-                if game.c2[i] == True:
-                    btn.draw(win)
-                i = i + 1
+        i = 0
+        for btn in question.btns2:
+            if game.c2[i] == True:
+                btn.draw(win)
+            i = i + 1
 
-            i = 0
-            for btn in question.btns3:
-                if game.c3[i] == True:
-                    btn.draw(win)
-                i = i + 1
+        i = 0
+        for btn in question.btns3:
+            if game.c3[i] == True:
+                btn.draw(win)
+            i = i + 1
 
-            i = 0
-            for btn in question.btns4:
-                if game.c4[i] == True:
-                    btn.draw(win)
-                i = i + 1
+        i = 0
+        for btn in question.btns4:
+            if game.c4[i] == True:
+                btn.draw(win)
+            i = i + 1
 
-            i = 0
-            for btn in question.btns5:
-                if game.c5[i] == True:
-                    btn.draw(win)
-                i = i + 1
+        i = 0
+        for btn in question.btns5:
+            if game.c5[i] == True:
+                btn.draw(win)
+            i = i + 1
 
-            i = 0
-            for btn in question.btns6:
-                if game.c6[i] == True:
-                    btn.draw(win)
-                i = i + 1
+        i = 0
+        for btn in question.btns6:
+            if game.c6[i] == True:
+                btn.draw(win)
+            i = i + 1
 
-            for category in question.ctg:
-                category.draw(win)
+        for category in question.ctg:
+            category.draw(win)
 
         #       Aktualizuování skóre
         interface1.score = game.p1_score
@@ -226,8 +235,8 @@ def redrawWindow(win, game, p):
     pygame.display.update()
 
 
-interface1 = Interface('Player1: ', 100, 800, (255, 255, 255), 0)
-interface2 = Interface('Player2: ', width - 400, 800, (255, 255, 255), 0)
+interface1 = Interface('Hráč 1: ', 100, 785, (255, 255, 255), 0)
+interface2 = Interface('Hráč 2: ', 100, 910, (255, 255, 255), 0)
 
 
 def main():
@@ -272,10 +281,10 @@ def menu_screen():
 
     while run:
         clock.tick(60)
-        win.fill((128, 128, 128))
-        font = pygame.font.SysFont("comicsans", 60)
-        text = font.render("Click to Play!", 1, (255, 0, 0))
-        win.blit(text, (100, 200))
+        win.fill((41, 50, 65))
+        font = pygame.font.SysFont("comicsans", 100)
+        text = font.render("Kliknutím se připoj do hry!", 1, (252, 163, 17))
+        win.blit(text, ((1300-text.get_width())/2, (1000-text.get_height())/2))
         pygame.display.update()
 
         for event in pygame.event.get():

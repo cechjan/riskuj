@@ -50,7 +50,7 @@ class Question(Button):
     def draw(self, win):
         font = pygame.font.SysFont("comicsans", 40)
         self.q = font.render(self.q, 1, (255,255,255))
-        win.blit(self.q, (10, 0))
+        win.blit(self.q, (100, 700))
 
     def get_correct_ans(self):
         return self.correct_ans
@@ -58,37 +58,42 @@ class Question(Button):
 
 #   First column
 fc = 43
+stupen_1 = (4, 237, 0)
+stupen_2 = (250, 218, 37)
+stupen_3 = (237, 178, 0)
+stupen_4 = (237, 103, 0)
+stupen_5 = (237, 36, 0)
 
 #   Kategorie
-ctg = [Category("Poznej město", fc, 10, (0, 0, 0)), Category("Najdi slovo", fc, button_height + 20, (255, 0, 0)), Category("Slova na mik", fc, 2 * button_height + 30, (0, 255, 0)),\
-       Category("Naši sousedé", fc, 3 * button_height + 40, (0, 255, 0)), Category("Sci-fi postavy", fc, 4 * button_height + 50, (0, 255, 0)), Category("Curling", fc, 5 * button_height + 60, (0, 255, 0))]
+ctg = [Category("Města", fc, 10, (0, 0, 0)), Category("Jednotky", fc, button_height + 20, (0, 0, 0)), Category("Historie", fc, 2 * button_height + 30, (0, 0, 0)),\
+       Category("Chemie", fc, 3 * button_height + 40, (0, 0, 0)), Category("Geografie", fc, 4 * button_height + 50, (0, 0, 0)), Category("Vesmír", fc, 5 * button_height + 60, (0, 0, 0))]
 
 #   První řada
-btns1 = [Button("1000", (fc - 1) * 2 + button_width, 10, (0, 0, 0)), Button("2000", (fc - 1) * 3 + button_width * 2, 10, (0, 0, 0)),\
-         Button("3000", (fc - 1) * 4 + button_width * 3, 10, (0, 0, 0)), Button("4000", (fc - 1) * 5 + button_width * 4, 10, (0, 0, 0)),\
-         Button("5000", (fc - 1) * 6 + button_width * 5, 10, (0, 0, 0))]
+btns1 = [Button("1000", (fc - 1) * 2 + button_width, 10, stupen_1), Button("2000", (fc - 1) * 3 + button_width * 2, 10, stupen_2),\
+         Button("3000", (fc - 1) * 4 + button_width * 3, 10, stupen_3), Button("4000", (fc - 1) * 5 + button_width * 4, 10, stupen_4),\
+         Button("5000", (fc - 1) * 6 + button_width * 5, 10, stupen_5)]
 
 #   Druhá řada
-btns2 = [Button("1000", (fc - 1) * 2 + button_width, button_height + 20, (0, 0, 0)), Button("2000", (fc - 1) * 3 + button_width * 2, button_height + 20, (0, 0, 0)),\
-         Button("3000", (fc - 1) * 4 + button_width * 3, button_height + 20, (0, 0, 0)), Button("4000", (fc - 1) * 5 + button_width * 4, button_height + 20, (0, 0, 0)),\
-         Button("5000", (fc - 1) * 6 + button_width * 5, button_height + 20, (0, 0, 0))]
+btns2 = [Button("1000", (fc - 1) * 2 + button_width, button_height + 20, stupen_1), Button("2000", (fc - 1) * 3 + button_width * 2, button_height + 20, stupen_2),\
+         Button("3000", (fc - 1) * 4 + button_width * 3, button_height + 20, stupen_3), Button("4000", (fc - 1) * 5 + button_width * 4, button_height + 20, stupen_4),\
+         Button("5000", (fc - 1) * 6 + button_width * 5, button_height + 20, stupen_5)]
 
 #   Třetí řada
-btns3 = [Button("1000", (fc - 1) * 2 + button_width, 2 * button_height + 30, (0, 0, 0)), Button("2000", (fc - 1) * 3 + button_width * 2, 2 * button_height + 30, (0, 0, 0)),\
-         Button("3000", (fc - 1) * 4 + button_width * 3, 2 * button_height + 30, (0, 0, 0)), Button("4000", (fc - 1) * 5 + button_width * 4, 2 * button_height + 30, (0, 0, 0)),\
-         Button("5000", (fc - 1) * 6 + button_width * 5, 2 * button_height + 30, (0, 0, 0))]
+btns3 = [Button("1000", (fc - 1) * 2 + button_width, 2 * button_height + 30, stupen_1), Button("2000", (fc - 1) * 3 + button_width * 2, 2 * button_height + 30, stupen_2),\
+         Button("3000", (fc - 1) * 4 + button_width * 3, 2 * button_height + 30, stupen_3), Button("4000", (fc - 1) * 5 + button_width * 4, 2 * button_height + 30, stupen_4),\
+         Button("5000", (fc - 1) * 6 + button_width * 5, 2 * button_height + 30, stupen_5)]
 
 #   Čtvrtá řada
-btns4 = [Button("1000", (fc - 1) * 2 + button_width, 3 * button_height + 40, (0, 0, 0)), Button("2000", (fc - 1) * 3 + button_width * 2, 3 * button_height + 40, (0, 0, 0)),\
-         Button("3000", (fc - 1) * 4 + button_width * 3, 3 * button_height + 40, (0, 0, 0)), Button("4000", (fc - 1) * 5 + button_width * 4, 3 * button_height + 40, (0, 0, 0)),\
-         Button("5000", (fc - 1) * 6 + button_width * 5, 3 * button_height + 40, (0, 0, 0))]
+btns4 = [Button("1000", (fc - 1) * 2 + button_width, 3 * button_height + 40, stupen_1), Button("2000", (fc - 1) * 3 + button_width * 2, 3 * button_height + 40, stupen_2),\
+         Button("3000", (fc - 1) * 4 + button_width * 3, 3 * button_height + 40, stupen_3), Button("4000", (fc - 1) * 5 + button_width * 4, 3 * button_height + 40, stupen_4),\
+         Button("5000", (fc - 1) * 6 + button_width * 5, 3 * button_height + 40, stupen_5)]
 
 #   Pátá řada
-btns5 = [Button("1000", (fc - 1) * 2 + button_width, 4 * button_height + 50, (0, 0, 0)), Button("2000", (fc - 1) * 3 + button_width * 2, 4 * button_height + 50, (0, 0, 0)),\
-         Button("3000", (fc - 1) * 4 + button_width * 3, 4 * button_height + 50, (0, 0, 0)), Button("4000", (fc - 1) * 5 + button_width * 4, 4 * button_height + 50, (0, 0, 0)),\
-         Button("5000", (fc - 1) * 6 + button_width * 5, 4 * button_height + 50, (0, 0, 0))]
+btns5 = [Button("1000", (fc - 1) * 2 + button_width, 4 * button_height + 50, stupen_1), Button("2000", (fc - 1) * 3 + button_width * 2, 4 * button_height + 50, stupen_2),\
+         Button("3000", (fc - 1) * 4 + button_width * 3, 4 * button_height + 50, stupen_3), Button("4000", (fc - 1) * 5 + button_width * 4, 4 * button_height + 50, stupen_4),\
+         Button("5000", (fc - 1) * 6 + button_width * 5, 4 * button_height + 50, stupen_5)]
 
 #   Šestá řada
-btns6 = [Button("1000", (fc - 1) * 2 + button_width, 5 * button_height + 60, (0, 0, 0)), Button("2000", (fc - 1) * 3 + button_width * 2, 5 * button_height + 60, (0, 0, 0)),\
-         Button("3000", (fc - 1) * 4 + button_width * 3, 5 * button_height + 60, (0, 0, 0)), Button("4000", (fc - 1) * 5 + button_width * 4, 5 * button_height + 60, (0, 0, 0)),\
-         Button("5000", (fc - 1) * 6 + button_width * 5, 5 * button_height + 60, (0, 0, 0))]
+btns6 = [Button("1000", (fc - 1) * 2 + button_width, 5 * button_height + 60, stupen_1), Button("2000", (fc - 1) * 3 + button_width * 2, 5 * button_height + 60, stupen_2),\
+         Button("3000", (fc - 1) * 4 + button_width * 3, 5 * button_height + 60, stupen_3), Button("4000", (fc - 1) * 5 + button_width * 4, 5 * button_height + 60, stupen_4),\
+         Button("5000", (fc - 1) * 6 + button_width * 5, 5 * button_height + 60, stupen_5)]
