@@ -2,6 +2,7 @@ import socket
 from _thread import *
 import pickle
 from game import Game
+import question
 
 #   ip serveru (v uvozovkách)
 server = "192.168.0.183"
@@ -67,6 +68,17 @@ def threaded_client(conn, p, gameId):
                         adding_score(2, int(data[1:]), game)
                     elif data[0] == "b":
                         game.change_current_q(str(data[4:]), str(data[3]))
+                    elif data[0] == "s":
+                        game.button_display(data[2], data[3])
+                        # print("sbbbbbbbbbbb")
+                        # print(question.btns1[0].is_shown)
+                        # question.btns1[0].is_shown = False
+                        # print(question.btns1[0].is_shown)
+                        #question.button_display(data[2], data[3])
+                        # question.btns1[0].is_shown = False
+                        # print("------------------------------")
+                        #game.g = False
+                        #pass
                     elif data != "get":
                         game.play(p, data)
 
