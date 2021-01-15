@@ -1,6 +1,3 @@
-import question
-
-
 class Game:
     #   id hry
     def __init__(self, id):
@@ -108,32 +105,6 @@ class Game:
         self.category = category
 
     def button_display(self, b_row, b_index):
-        # print(b_row, b_index)
-        # print(question.btns1[b_index].is_shown)
-        # if int(b_row) == 1:
-        #     # del question.btns1[int(b_index)]
-        #     # print(question.btns1[int(b_index)])
-        #     # question.remove_btn(b_row, b_index)
-        #     print(question.btns1[b_index].is_shown)
-        #     question.btns1[b_index].is_shown = False
-        #     print(question.btns1[b_index].is_shown)
-        # if int(b_row) == 1:
-        #     for button in question.btns1:
-        #         if button.text == str(1000):
-        #             print("_-_-_-_-_-")
-        #             # del btns1[int(button.text[0]) - 1]
-        #             print(button.is_shown)
-        #             button.is_shown = False
-        #             print(button.is_shown)
-        #     question.btns1[0].is_shown = False
-        #     # btns1[b_index].is_shown = False
-        #     print(f"{b_index}----------------------------")
-        # if b_row == "1":
-        #     for i in range(6):
-        #         if i == int(b_index):
-        #             self.c1[b_index] = False
-        #self.c1[b_index] = False
-        # print(f"BRRRRRRRRRRRRRRRRRRR {b_index}{self.c1[int(b_index)]}")
         if int(b_row) == 1:
             self.c1[int(b_index)] = False
         elif int(b_row) == 2:
@@ -146,6 +117,3 @@ class Game:
             self.c5[int(b_index)] = False
         elif int(b_row) == 6:
             self.c6[int(b_index)] = False
-
-    # def brrr(self):
-    #     return self.c1[0]

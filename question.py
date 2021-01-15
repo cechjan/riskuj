@@ -56,20 +56,6 @@ class Question(Button):
         return self.correct_ans
 
 
-# def button_display(b_row, b_index):
-#     if int(b_row) == 1:
-#         for button in btns1:
-#            if button.text == str(1000):
-#                print("_-_-_-_-_-")
-#                # del btns1[int(button.text[0]) - 1]
-#                print(button.is_shown)
-#                button.is_shown = False
-#                print(button.is_shown)
-#         btns1[0].is_shown = False
-#         #btns1[b_index].is_shown = False
-#         print(f"{b_index}----------------------------")
-
-
 #   First column
 fc = 43
 
