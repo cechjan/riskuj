@@ -50,6 +50,14 @@ def compare_and_change(p, game, answer_button, q):
             game = n.send(f"1{q.points}")
         else:
             game = n.send(f"2{q.points}")
+        count = 0
+        for e in range(5):
+            if not game.c1[e] and not game.c2[e] and not game.c3[e] and not game.c4[e] and not game.c5[e] and not \
+            game.c6[e]:
+                count += 1
+        if count == 5:
+            print("Všechno je fuč")
+            game = n.send("end")
 
 
 def draw_question(p, win, game):
@@ -99,44 +107,45 @@ def redrawWindow(win, game, p):
         text = font.render("Waiting for Player...", 1, (255, 0, 0), True)
         win.blit(text, (width/2 - text.get_width()/2, height/2 - text.get_height()/2))
     else:
-        i = 0
-        for btn in question.btns1:
-            if game.c1[i] == True:
-                btn.draw(win)
-            i = i + 1
+        if not game.is_it_the_end:
+            i = 0
+            for btn in question.btns1:
+                if game.c1[i] == True:
+                    btn.draw(win)
+                i = i + 1
 
-        i = 0
-        for btn in question.btns2:
-            if game.c2[i] == True:
-                btn.draw(win)
-            i = i + 1
+            i = 0
+            for btn in question.btns2:
+                if game.c2[i] == True:
+                    btn.draw(win)
+                i = i + 1
 
-        i = 0
-        for btn in question.btns3:
-            if game.c3[i] == True:
-                btn.draw(win)
-            i = i + 1
+            i = 0
+            for btn in question.btns3:
+                if game.c3[i] == True:
+                    btn.draw(win)
+                i = i + 1
 
-        i = 0
-        for btn in question.btns4:
-            if game.c4[i] == True:
-                btn.draw(win)
-            i = i + 1
+            i = 0
+            for btn in question.btns4:
+                if game.c4[i] == True:
+                    btn.draw(win)
+                i = i + 1
 
-        i = 0
-        for btn in question.btns5:
-            if game.c5[i] == True:
-                btn.draw(win)
-            i = i + 1
+            i = 0
+            for btn in question.btns5:
+                if game.c5[i] == True:
+                    btn.draw(win)
+                i = i + 1
 
-        i = 0
-        for btn in question.btns6:
-            if game.c6[i] == True:
-                btn.draw(win)
-            i = i + 1
+            i = 0
+            for btn in question.btns6:
+                if game.c6[i] == True:
+                    btn.draw(win)
+                i = i + 1
 
-        for category in question.ctg:
-            category.draw(win)
+            for category in question.ctg:
+                category.draw(win)
 
         #       Aktualizuování skóre
         interface1.score = game.p1_score

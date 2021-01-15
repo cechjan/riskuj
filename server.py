@@ -70,6 +70,8 @@ def threaded_client(conn, p, gameId):
                         game.change_current_q(str(data[4:]), str(data[3]))
                     elif data[0] == "s":
                         game.button_display(data[2], data[3])
+                    elif data == "end":
+                        game.end()
                     elif data != "get":
                         game.play(p, data)
 

@@ -20,7 +20,7 @@ class Game:
         self.c4 = [True, True, True, True, True]
         self.c5 = [True, True, True, True, True]
         self.c6 = [True, True, True, True, True]
-        self.g = True
+        self.is_it_the_end = False
 
     def get_player_move(self, p):
         """
@@ -117,3 +117,6 @@ class Game:
             self.c5[int(b_index)] = False
         elif int(b_row) == 6:
             self.c6[int(b_index)] = False
+
+    def end(self):
+        self.is_it_the_end = True
