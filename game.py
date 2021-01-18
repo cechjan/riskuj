@@ -1,13 +1,8 @@
 class Game:
     #   id hry
     def __init__(self, id):
-        self.p1Went = False
-        self.p2Went = False
         self.ready = False
         self.id = id
-        self.moves = [None, None]
-        self.wins = [0,0]
-        self.ties = 0
         self.p_turn = 0
         self.is_question_displayed = False
         self.p1_score = 0
@@ -22,52 +17,9 @@ class Game:
         self.c6 = [True, True, True, True, True]
         self.is_it_the_end = False
 
-    def get_player_move(self, p):
-        """
-        :param p: [0,1]
-        :return: Move
-        """
-        return self.moves[p]
-
-    def play(self, player, move):
-        self.moves[player] = move
-        if player == 0:
-            self.p1Went = True
-        else:
-            self.p2Went = True
-
     #   Pokud jsou oba připojení
     def connected(self):
         return self.ready
-
-    def bothWent(self):
-        return self.p1Went and self.p2Went
-
-    def winner(self):
-
-        p1 = self.moves[0].upper()[0]
-        p2 = self.moves[1].upper()[0]
-
-        #   -1, protože to může být remíza
-        winner = -1
-        if p1 == "R" and p2 == "S":
-            winner = 0
-        elif p1 == "S" and p2 == "R":
-            winner = 1
-        elif p1 == "P" and p2 == "R":
-            winner = 0
-        elif p1 == "R" and p2 == "P":
-            winner = 1
-        elif p1 == "S" and p2 == "P":
-            winner = 0
-        elif p1 == "P" and p2 == "S":
-            winner = 1
-
-        return winner
-
-    def resetWent(self):
-        self.p1Went = False
-        self.p2Went = False
 
     def change_player_turn(self):
         if self.p_turn == 0:
@@ -75,7 +27,6 @@ class Game:
         else:
             self.p_turn = 0
         print(self.p_turn)
-        #return self.p_turn
 
     def get_player_turn(self):
         return self.p_turn
@@ -118,9 +69,6 @@ class Game:
             self.c5[int(b_index)] = False
         elif int(b_row) == 6:
             self.c6[int(b_index)] = False
-
-    # def end(self):
-    #     self.is_it_the_end = True
 
     def end(self):
         result = False

@@ -17,10 +17,6 @@ button_width = 166
 
 n = Network()
 
-# class Q():
-#     def __init__(self):
-#         self.is_question_displayed = False
-
 
 class Interface(pygame.Surface):
     def __init__(self, text, x, y, color, score):
@@ -50,14 +46,6 @@ def compare_and_change(p, game, answer_button, q):
             game = n.send(f"1{q.points}")
         else:
             game = n.send(f"2{q.points}")
-        # count = 0
-        # for e in range(5):
-        #     if not game.c1[e] and not game.c2[e] and not game.c3[e] and not game.c4[e] and not game.c5[e] and not \
-        #     game.c6[e]:
-        #         count += 1
-        # if count == 5:
-        #     print("Všechno je fuč")
-        #     game = n.send("end")
 
     game = n.send("end")
 
@@ -77,10 +65,6 @@ def draw_question(p, win, game):
         if que["points"] == game.current_q:
             q = question.Question(que["q"], que["a1"], que["a2"], que["a3"], que["a4"], que["correct_ans"], que["points"])
 
-    #q.draw(win)
-    # font = pygame.font.SysFont("comicsans", 40)
-    # qwe = font.render(q, 1, (255, 255, 255))
-    # win.blit(qwe, (10, 0))
     ANSWER_CLR = (52, 47, 222)
     q.draw(win)
     answer_button1 = question.Button(f"1) {q.a1}", 455, 750, ANSWER_CLR)
@@ -117,6 +101,24 @@ def draw_question(p, win, game):
                     compare_and_change(p, game, answer_button4, q)
 
 
+def draw_button(btns, c):
+    i = 0
+    for btn in btns:
+        if c[i] == True:
+            btn.draw(win)
+        i = i + 1
+
+
+def check_clicked_button(btns, c, pos, num, game):
+    i = 0
+    for button in btns:
+        if button.click(pos) and game.connected() and c[i] == True:
+            game = n.send("questionDisplay")
+            game = n.send(f"btn{num}{button.text}")
+            game = n.send(f"sb{num}{int(button.text[0]) - 1}")
+        i = i + 1
+
+
 def redrawWindow(win, game, p):
     win.fill((41, 50, 65))
 
@@ -126,41 +128,12 @@ def redrawWindow(win, game, p):
         win.blit(text, (width/2 - text.get_width()/2, height/2 - text.get_height()/2))
     else:
         if not game.is_it_the_end:
-            i = 0
-            for btn in question.btns1:
-                if game.c1[i] == True:
-                    btn.draw(win)
-                i = i + 1
-
-            i = 0
-            for btn in question.btns2:
-                if game.c2[i] == True:
-                    btn.draw(win)
-                i = i + 1
-
-            i = 0
-            for btn in question.btns3:
-                if game.c3[i] == True:
-                    btn.draw(win)
-                i = i + 1
-
-            i = 0
-            for btn in question.btns4:
-                if game.c4[i] == True:
-                    btn.draw(win)
-                i = i + 1
-
-            i = 0
-            for btn in question.btns5:
-                if game.c5[i] == True:
-                    btn.draw(win)
-                i = i + 1
-
-            i = 0
-            for btn in question.btns6:
-                if game.c6[i] == True:
-                    btn.draw(win)
-                i = i + 1
+            draw_button(question.btns1, game.c1)
+            draw_button(question.btns2, game.c2)
+            draw_button(question.btns3, game.c3)
+            draw_button(question.btns4, game.c4)
+            draw_button(question.btns5, game.c5)
+            draw_button(question.btns6, game.c6)
 
             for category in question.ctg:
                 category.draw(win)
@@ -192,49 +165,13 @@ def redrawWindow(win, game, p):
                         pygame.quit()
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         pos = pygame.mouse.get_pos()
-                        i = 0
-                        for button in question.btns1:
-                            if button.click(pos) and game.connected() and game.c1[i] == True:
-                                game = n.send("questionDisplay")
-                                game = n.send(f"btn1{button.text}")
-                                # button.is_shown = False
-                                game = n.send(f"sb1{int(button.text[0]) - 1}")
-                            i = i + 1
-                        i = 0
-                        for button in question.btns2:
-                            if button.click(pos) and game.connected() and game.c2[i] == True:
-                                game = n.send("questionDisplay")
-                                game = n.send(f"btn2{button.text}")
-                                game = n.send(f"sb2{int(button.text[0]) - 1}")
-                            i = i + 1
-                        i = 0
-                        for button in question.btns3:
-                            if button.click(pos) and game.connected() and game.c3[i] == True:
-                                game = n.send("questionDisplay")
-                                game = n.send(f"btn3{button.text}")
-                                game = n.send(f"sb3{int(button.text[0]) - 1}")
-                            i = i + 1
-                        i = 0
-                        for button in question.btns4:
-                            if button.click(pos) and game.connected() and game.c4[i] == True:
-                                game = n.send("questionDisplay")
-                                game = n.send(f"btn4{button.text}")
-                                game = n.send(f"sb4{int(button.text[0]) - 1}")
-                            i = i + 1
-                        i = 0
-                        for button in question.btns5:
-                            if button.click(pos) and game.connected() and game.c5[i] == True:
-                                game = n.send("questionDisplay")
-                                game = n.send(f"btn5{button.text}")
-                                game = n.send(f"sb5{int(button.text[0]) - 1}")
-                            i = i + 1
-                        i = 0
-                        for button in question.btns6:
-                            if button.click(pos) and game.connected() and game.c6[i] == True:
-                                game = n.send("questionDisplay")
-                                game = n.send(f"btn6{button.text}")
-                                game = n.send(f"sb6{int(button.text[0]) - 1}")
-                            i = i + 1
+
+                        check_clicked_button(question.btns1, game.c1, pos, 1, game)
+                        check_clicked_button(question.btns2, game.c2, pos, 2, game)
+                        check_clicked_button(question.btns3, game.c3, pos, 3, game)
+                        check_clicked_button(question.btns4, game.c4, pos, 4, game)
+                        check_clicked_button(question.btns5, game.c5, pos, 5, game)
+                        check_clicked_button(question.btns6, game.c6, pos, 6, game)
 
             elif p != int(game.get_player_turn()):
                 if game.get_question_display() == True:
@@ -263,17 +200,6 @@ def main():
             run = False
             print("Couldn't get game")
             break
-
-        if game.bothWent():
-            redrawWindow(win, game, player)
-            pygame.time.delay(500)
-            try:
-                #   Pošle string reset na server
-                game = n.send("reset")
-            except:
-                run = False
-                print("Couldn't get game")
-                break
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

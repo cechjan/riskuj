@@ -56,9 +56,7 @@ def threaded_client(conn, p, gameId):
                     break
                 else:
                     #   resetuje p1 a p2 Went
-                    if data == "reset":
-                        game.resetWent()
-                    elif data == "change":
+                    if data == "change":
                         game.change_player_turn()
                     elif data == "questionDisplay":
                         game.change_question_display()
