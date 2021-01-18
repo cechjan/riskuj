@@ -49,7 +49,7 @@ class Question(Button):
 
     def draw(self, win):
         font = pygame.font.SysFont("comicsans", 40)
-        self.q = font.render(self.q, 1, (255,255,255))
+        self.q = font.render(self.q, 1, (255, 255, 255))
         win.blit(self.q, (100, 700))
 
     def get_correct_ans(self):

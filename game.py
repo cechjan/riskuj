@@ -20,7 +20,7 @@ class Game:
         self.c4 = [True, True, True, True, True]
         self.c5 = [True, True, True, True, True]
         self.c6 = [True, True, True, True, True]
-        # self.is_it_the_end = False
+        self.is_it_the_end = False
 
     def get_player_move(self, p):
         """
@@ -97,6 +97,7 @@ class Game:
 
     def print_score1(self):
         return self.p1_score
+
     def print_score2(self):
         return self.p2_score
 
@@ -120,3 +121,11 @@ class Game:
 
     # def end(self):
     #     self.is_it_the_end = True
+
+    def end(self):
+        result = False
+
+        if len(self.c1) > 0:
+            result = all(elem == self.c1[0] for elem in self.c1)
+        if result and self.c1 == self.c2 and self.c1 == self.c3 and self.c1 == self.c4 and self.c1 == self.c5 and self.c1 == self.c6:
+            self.is_it_the_end = True

@@ -5,7 +5,7 @@ from game import Game
 import question
 
 #   ip serveru (v uvozovkách)
-server = "192.168.2.104"
+server = "192.168.0.183"
 port = 5555
 
 #   Pro ipv4
@@ -70,8 +70,8 @@ def threaded_client(conn, p, gameId):
                         game.change_current_q(str(data[4:]), str(data[3]))
                     elif data[0] == "s":
                         game.button_display(data[2], data[3])
-                    # elif data == "end":
-                    #     game.end()
+                    elif data == "end":
+                        game.end()
                     elif data != "get":
                         game.play(p, data)
 
