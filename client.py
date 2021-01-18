@@ -38,10 +38,10 @@ class Interface(pygame.Surface):
 def compare_and_change(p, game, answer_button, q):
     game = n.send("change")
     game = n.send("questionDisplay")
-    print(answer_button.text[0])
+    # print(answer_button.text[0])
     if answer_button.text[0] == q.get_correct_ans():
-        print("Spravna odpoved")
-        print(p)
+        # print("Spravna odpoved")
+        # print(p)
         if p == 0:
             game = n.send(f"1{q.points}")
         else:
@@ -58,7 +58,7 @@ def compare_and_change(p, game, answer_button, q):
 
 
 def draw_question(p, win, game):
-    print(f"Bodíky: {game.current_q}, kategorie: {game.category}")
+    # print(f"Bodíky: {game.current_q}, kategorie: {game.category}") - kontrola platnosti
     with open(f"json/kategorie{game.category}.json", encoding="utf-8") as f:
         data = json.load(f)
     for que in data["questions"]:
@@ -88,16 +88,16 @@ def draw_question(p, win, game):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 if answer_button1.click(pos) and game.connected():
-                    print(answer_button1.text)
+                    # print(answer_button1.text)
                     compare_and_change(p, game, answer_button1, q)
                 elif answer_button2.click(pos) and game.connected():
-                    print(answer_button2.text)
+                    # print(answer_button2.text)
                     compare_and_change(p, game, answer_button2, q)
                 elif answer_button3.click(pos) and game.connected():
-                    print(answer_button3.text)
+                    # print(answer_button3.text)
                     compare_and_change(p, game, answer_button3, q)
                 elif answer_button4.click(pos) and game.connected():
-                    print(answer_button4.text)
+                    # print(answer_button4.text)
                     compare_and_change(p, game, answer_button4, q)
 
 
@@ -117,6 +117,20 @@ def check_clicked_button(btns, c, pos, num, game):
             game = n.send(f"btn{num}{button.text}")
             game = n.send(f"sb{num}{int(button.text[0]) - 1}")
         i = i + 1
+
+
+def who_wins(win, status):
+    font = pygame.font.SysFont("comicsans", 150)
+    text = font.render(status, 1, (4, 237, 0) if status == "Vyhrál jsi" else (237, 103, 0))
+    win.blit(text, (width / 2 - text.get_width() / 2, 250))
+
+    font = pygame.font.SysFont("comicsans", 50)
+    text = font.render(f"Hráč 1: {interface1.score}", 1, (255, 255, 255))
+    win.blit(text, (width / 2 - text.get_width() / 2, 500))
+
+    font = pygame.font.SysFont("comicsans", 50)
+    text = font.render(f"Hráč 2: {interface2.score}", 1, (255, 255, 255))
+    win.blit(text, (width / 2 - text.get_width() / 2, 600))
 
 
 def redrawWindow(win, game, p):
@@ -157,7 +171,7 @@ def redrawWindow(win, game, p):
                 interface2.draw(win, (155, 155, 155))
 
             if p == int(game.get_player_turn()):
-                print(f"jsem hráč {p} a jsem na tahu")
+                # print(f"jsem hráč {p} a jsem na tahu") - kontrola platnosti
                 if game.get_question_display() == True:
                     draw_question(p, win, game)
                 for event in pygame.event.get():
@@ -176,7 +190,19 @@ def redrawWindow(win, game, p):
             elif p != int(game.get_player_turn()):
                 if game.get_question_display() == True:
                     draw_question(p, win, game)
-                print(f"jsem hráč {p} a nejsem na tahu")
+                # print(f"jsem hráč {p} a nejsem na tahu") - kontrola platnosti
+        else:
+            font = pygame.font.SysFont("comicsans", 100)
+            if interface1.score > interface2.score:
+                if p == 0:
+                    who_wins(win, "Vyhrál jsi")
+                elif p == 1:
+                    who_wins(win, "Prohrál jsi")
+            else:
+                if p == 0:
+                    who_wins(win, "Prohrál jsi")
+                elif p == 1:
+                    who_wins(win, "Vyhrál jsi")
 
     pygame.display.update()
 
@@ -189,7 +215,7 @@ def main():
     run = True
     clock = pygame.time.Clock()
     player = int(n.getP())
-    print("You are player", player)
+    print("Jsi hráč ", player)
 
     while run:
         clock.tick(60)
@@ -198,7 +224,7 @@ def main():
             game = n.send("get")
         except:
             run = False
-            print("Couldn't get game")
+            print("Nepodařilo se připojit")
             break
 
         for event in pygame.event.get():

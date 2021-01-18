@@ -5,7 +5,7 @@ from game import Game
 import question
 
 #   ip serveru (v uvozovkách)
-server = "192.168.0.183"
+server = "192.168.2.104"
 port = 5555
 
 #   Pro ipv4
@@ -30,7 +30,7 @@ def adding_score(player, score, game):
     r = range(6)
     for i in r:
         if i * 1000 == score:
-            print(score)
+            # print(score)
             game.add_score(player, score)
 
 

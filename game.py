@@ -26,7 +26,7 @@ class Game:
             self.p_turn = 1
         else:
             self.p_turn = 0
-        print(self.p_turn)
+        # print(self.p_turn)
 
     def get_player_turn(self):
         return self.p_turn
